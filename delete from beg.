@@ -1,0 +1,67 @@
+package com.company;
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+
+    public static void main(String[] args)  {
+
+        abc list =new abc();
+        list.insert(12);
+        list.insert(13);
+        list.insert(14);
+        list.display();
+        list.deletebeg();
+        list.display();
+}
+}
+class node {
+    int data;
+    node next;
+
+    public node(int data) {
+        this.data = data;
+        this.next=null;
+    }
+}
+class abc{
+    public node head=null;
+    public node tail= null;
+    public void insert(int data ){
+        node newnode =new node(data);
+        if(head==null){
+            head=newnode;
+            tail=newnode;
+        }
+        else {
+          tail.next=newnode;
+          tail=newnode;
+          tail.next=head;
+        }
+
+    }
+    public void deletebeg(){
+        if(head==null){
+            System.out.println("list is empty ");
+        }
+        else{
+            if(head!=tail){
+                head=head.next;
+                tail.next=head;
+            }
+            else {
+                head=tail=null;
+            }
+        }
+    }
+    public void display(){
+        node current =head;
+        do{
+            System.out.print(current.data+" ");
+            current=current.next;
+        }while (current!=head);
+        System.out.println();
+    }
+}
