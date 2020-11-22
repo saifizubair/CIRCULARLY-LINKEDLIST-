@@ -1,0 +1,56 @@
+package com.company;
+
+import java.io.*;
+import java.sql.*;
+import java.lang.*;
+import java.util.*;
+
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        abc list = new abc();
+        list.insert(12);
+        list.insert(13);
+        list.insert(14);
+        list.insert(15);
+        list.display();
+
+    }
+}
+class node{
+    int data;
+    node next;
+
+    public node(int data) {
+        this.data = data;
+        this.next=null;
+    }
+}
+class abc{
+    public node tail=null;
+    public node head=null;
+    public void insert(int data){
+    node newnode =new node(data);
+    if(head==null){
+        head=newnode;
+        tail=newnode;
+    }
+    else {
+        node temp =head;
+        newnode.next=temp;
+        head=newnode;
+        tail.next=newnode;
+    }
+    }
+    public void display(){
+        node current =head;
+        do{
+            System.out.print(current.data+" ");
+            current = current.next;
+        }while (current!=head);
+        System.out.println();
+    }
+}
+
