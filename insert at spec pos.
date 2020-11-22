@@ -1,0 +1,72 @@
+package com.company;
+
+import java.io.*;
+import java.sql.*;
+import java.lang.*;
+import java.util.*;
+
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        abc list = new abc();
+        list.insert(12);
+        list.insert(13);
+        list.insert(14);
+        list.insert(15);
+        list.display();
+        list.insrtatspec(18);
+        list.display();
+    }
+}
+class node{
+    int data;
+    node next;
+
+    public node(int data) {
+        this.data = data;
+        this.next=null;
+    }
+}
+class abc{
+    public node tail=null;
+    public node head=null;
+    public void insert(int data){
+    node newnode =new node(data);
+   if(head==null){
+       head=newnode;
+       tail=newnode;
+   }
+   else {
+       tail.next=newnode;
+       tail=newnode;
+       tail.next=head;
+   }
+    }
+    public void insrtatspec(int data ){
+        node ptr2=new node(data);
+        node ptr =head;
+        System.out.println("enter the position");
+        Scanner sc =new Scanner(System.in);
+        int loc =sc.nextInt();
+        for(int i=1;i<loc;i++){
+            ptr=ptr.next;
+            if(ptr==null){
+                System.out.println("node cannot iinserted ");
+            }
+        }
+        ptr2.next= ptr.next;
+        ptr.next=ptr2;
+        System.out.println("node is inserted");
+    }
+    public void display(){
+        node current =head;
+        do{
+            System.out.print(current.data+" ");
+            current = current.next;
+        }while (current!=head);
+        System.out.println();
+    }
+}
+
