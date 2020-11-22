@@ -1,0 +1,84 @@
+package com.company;
+
+import javax.swing.*;
+import java.io.*;
+import java.lang.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        abc list =new abc();
+        list.insert(12);
+        list.insert(16);
+        list.insert(10);
+        list.insert(15);
+        list.insert(11);
+        list.display();
+        list.sort();
+        list.display();
+
+    }
+}
+class node {
+
+    int data;
+    node next;
+
+    public node(int data) {
+        this.data = data;
+        this.next=null;
+    }
+}
+class abc {
+    public node head = null;
+    public node tail = null;
+
+    public void insert(int data) {
+        node newnode = new node(data);
+        if (head == null) {
+            head = newnode;
+            tail = newnode;
+        } else {
+            tail.next = newnode;
+            tail = newnode;
+            tail.next=head;
+        }
+    }
+
+    public void sort() {
+       node current =head ,index=null;
+       int temp;
+       if(head==null){
+           System.out.println("list is empty");
+       }
+       else {
+           do{
+               index =current.next;
+               while (index!=head){
+                   if(current.data> index.data){
+                       temp= current.data;
+                       current.data= index.data;
+                       index.data=temp;
+                   }
+                   index=index.next;
+               }
+               current=current.next;
+           }while (current.next!=head);
+       }
+    }
+    public void display(){
+        node current =head;
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        else {
+            do{
+                System.out.print(current.data+" ");
+                current=current.next;
+            }while (current!=head);
+            System.out.println();
+        }
+    }
+}
