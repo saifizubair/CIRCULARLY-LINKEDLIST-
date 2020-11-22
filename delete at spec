@@ -1,0 +1,75 @@
+package com.company;
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+
+    public static void main(String[] args)  {
+
+        abc list =new abc();
+        list.insert(12);
+        list.insert(13);
+        list.insert(14);
+        list.display();
+        list.deleteatspec();
+        list.display();
+}
+}
+class node {
+    int data;
+    node next;
+
+    public node(int data) {
+        this.data = data;
+        this.next=null;
+    }
+}
+class abc{
+    public node head=null;
+    public node tail= null;
+    public void insert(int data ){
+        node newnode =new node(data);
+        if(head==null){
+            head=newnode;
+            tail=newnode;
+        }
+        else {
+          tail.next=newnode;
+          tail=newnode;
+          tail.next=head;
+        }
+
+    }
+    public void deleteatspec(){
+        if(head==null){
+            System.out.println("list is empty");
+        }
+        else {
+            node current =head;
+            node prev =head;
+            System.out.println("enter the location");
+            Scanner sc =new Scanner(System.in);
+            int loc =sc.nextInt();
+            for(int i=1;i<loc;i++){
+                current=current.next;
+            }
+            for(int j=1;j<loc-1;j++){
+                prev=prev.next;
+            }
+            prev.next=current.next;
+            current.next=null;
+            System.out.println("node is deleted ");
+        }
+    }
+
+    public void display(){
+        node current =head;
+        do{
+            System.out.print(current.data+" ");
+            current=current.next;
+        }while (current!=head);
+        System.out.println();
+    }
+}
